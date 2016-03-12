@@ -32,7 +32,7 @@ Startup code, vector tables and default exception/interrupt handlers for variuos
 
 ## Requirements
 
-Library requires the following symbols defined in linker script:
+Library requires the following symbols defined in user's linker script:
 
 ```
 __top_of_stack - end of RAM area where stack located
@@ -75,6 +75,13 @@ int __low_level_init()
     return 1;
 }
 //------------------------------------------------------------------------------
-
 ```
+At first, `__low_level_init()` function called. The function by default returns `1` that means to perform static initialization of RAM data. The user can override this function - in particular, to set up clock speed, check type of start ('cold', 'warm', etc.) and return another code if required - 0 that causes skip of static initialization.
 
+The second initializing function `_init()` called from `__libc_init_array()`<sup>[1](#footnote1)</sup> just before global class-object constructors call.
+
+This flexible approach allows for the user to run custom initializating code to satisfy user's project demands.
+
+
+<hr>
+<a name="footnote1"></a>[1] Library function from GCC toolchain.
