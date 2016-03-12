@@ -43,3 +43,38 @@ __bss_start    - start of zero-filled data section
 __bss_end      - end of zero-filled data section
 ```
 
+## Startup
+
+Startup code is unified and very simple. It consists of `Reset_Handler` and two `weak` initializating functions. 
+
+#### Reset handler
+```C++
+//------------------------------------------------------------------------------
+void Reset_Handler()
+{
+    if( __low_level_init() )
+    {
+        memcpy(__data_start, __idata_start, __data_end - __data_start); // copy initialized variables
+        memset(__bss_start, 0, __data_end - __bss_start);               // zero-fill uninitialized variables
+        __libc_init_array();                                            // low-level init & ctor loop
+    }
+    main();
+}
+//------------------------------------------------------------------------------
+```
+#### Initializating functions
+```C++
+//------------------------------------------------------------------------------
+__attribute__ ((weak))
+void _init()
+{
+}
+//------------------------------------------------------------------------------
+int __low_level_init()
+{
+    return 1;
+}
+//------------------------------------------------------------------------------
+
+```
+
