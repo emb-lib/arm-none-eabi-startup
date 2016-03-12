@@ -45,7 +45,7 @@ __bss_end      - end of zero-filled data section
 
 ## Startup
 
-Startup code is unified and very simple. It consists of `Reset_Handler` and two `weak` initializating functions. 
+Startup code is unified and very simple. It consists of `Reset_Handler` and two `weak` initialization functions. 
 
 #### Reset handler
 ```C++
@@ -62,7 +62,7 @@ void Reset_Handler()
 }
 //------------------------------------------------------------------------------
 ```
-#### Initializating functions
+#### Initialization functions
 ```C++
 //------------------------------------------------------------------------------
 __attribute__ ((weak))
@@ -78,7 +78,7 @@ int __low_level_init()
 ```
 At first, `__low_level_init()` function called. The function by default returns `1` that means to perform static initialization of RAM data. The user can override this function - in particular, to set up clock speed, check type of start ('cold', 'warm', etc.) and return another code if required - 0 that causes skip of static initialization.
 
-The second initializing function `_init()` called from `__libc_init_array()`<sup>[1](#footnote1)</sup> just before global class-object constructors call.
+The second initialization function `_init()` called from `__libc_init_array()`<sup>[1](#footnote1)</sup> just before global class-object constructors call.
 
 This flexible approach allows for the user to run custom initializating code to satisfy user's project demands.
 
