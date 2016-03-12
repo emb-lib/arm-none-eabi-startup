@@ -1,6 +1,6 @@
 # arm-none-eabi-startup
 
-Startup code, vector tables and default exception/interrupt handlers for variuos uCs
+Startup code, vector tables and default exception/interrupt handlers for various uCs
 
 ## Supported families 
 
@@ -80,7 +80,7 @@ At first, `__low_level_init()` function called. The function by default returns 
 
 The second initialization function `_init()` called from `__libc_init_array()`<sup>[1](#footnote1)</sup> just before global class-object constructors call.
 
-This flexible approach allows for the user to run custom initializating code to satisfy user's project demands.
+This flexible approach allows for the user to run custom initialization code to satisfy user's project demands.
 
 
 <hr>
