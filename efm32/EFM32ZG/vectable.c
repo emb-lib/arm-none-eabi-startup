@@ -92,6 +92,20 @@ static void hf_handler()
 //
 //   Default exception handlers
 //
+#ifdef NDEBUG
+
+#pragma weak NMI_Handler        = default_handler
+#pragma weak HardFault_Handler  = default_handler
+#pragma weak MemManage_Handler  = default_handler
+#pragma weak BusFault_Handler   = default_handler
+#pragma weak UsageFault_Handler = default_handler
+#pragma weak SVC_Handler        = default_handler
+#pragma weak DebugMon_Handler   = default_handler
+#pragma weak PendSV_Handler     = default_handler
+#pragma weak SysTick_Handler    = default_handler
+
+#else // NDEBUG
+
 WEAK void NMI_Handler        ()  { default_handler(); }
 WEAK void HardFault_Handler  ()  { hf_handler();      }
 WEAK void MemManage_Handler  ()  { default_handler(); }
@@ -102,10 +116,34 @@ WEAK void DebugMon_Handler   ()  { default_handler(); }
 WEAK void PendSV_Handler     ()  { default_handler(); }
 WEAK void SysTick_Handler    ()  { default_handler(); }
 
+#endif // NDEBUG
+
 //------------------------------------------------------------------------------
 //
 //   Default interrupt handlers
 //
+#ifdef NDEBUG
+
+#pragma weak DMA_IRQHandler       = default_handler
+#pragma weak GPIO_EVEN_IRQHandler = default_handler
+#pragma weak TIMER0_IRQHandler    = default_handler
+#pragma weak ACMP0_IRQHandler     = default_handler
+#pragma weak ADC0_IRQHandler      = default_handler
+#pragma weak I2C0_IRQHandler      = default_handler
+#pragma weak GPIO_ODD_IRQHandler  = default_handler
+#pragma weak TIMER1_IRQHandler    = default_handler
+#pragma weak USART1_RX_IRQHandler = default_handler
+#pragma weak USART1_TX_IRQHandler = default_handler
+#pragma weak LEUART0_IRQHandler   = default_handler
+#pragma weak PCNT0_IRQHandler     = default_handler
+#pragma weak RTC_IRQHandler       = default_handler
+#pragma weak CMU_IRQHandler       = default_handler
+#pragma weak VCMP_IRQHandler      = default_handler
+#pragma weak MSC_IRQHandler       = default_handler
+#pragma weak AES_IRQHandler       = default_handler
+
+#else // NDEBUG
+
 WEAK void DMA_IRQHandler       ()  { default_handler(); }
 WEAK void GPIO_EVEN_IRQHandler ()  { default_handler(); }
 WEAK void TIMER0_IRQHandler    ()  { default_handler(); }
@@ -123,4 +161,6 @@ WEAK void CMU_IRQHandler       ()  { default_handler(); }
 WEAK void VCMP_IRQHandler      ()  { default_handler(); }
 WEAK void MSC_IRQHandler       ()  { default_handler(); }
 WEAK void AES_IRQHandler       ()  { default_handler(); }
+
+#endif // NDEBUG
 //------------------------------------------------------------------------------

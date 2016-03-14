@@ -166,6 +166,20 @@ static void hf_handler()
 //
 //   Default exception handlers
 //
+#ifdef NDEBUG
+
+#pragma weak NMI_Handler        = default_handler
+#pragma weak HardFault_Handler  = default_handler
+#pragma weak MemManage_Handler  = default_handler
+#pragma weak BusFault_Handler   = default_handler
+#pragma weak UsageFault_Handler = default_handler
+#pragma weak SVC_Handler        = default_handler
+#pragma weak DebugMon_Handler   = default_handler
+#pragma weak PendSV_Handler     = default_handler
+#pragma weak SysTick_Handler    = default_handler
+
+#else // NDEBUG
+
 WEAK void NMI_Handler        ()  { default_handler(); }
 WEAK void HardFault_Handler  ()  { hf_handler();      }
 WEAK void MemManage_Handler  ()  { default_handler(); }
@@ -176,10 +190,110 @@ WEAK void DebugMon_Handler   ()  { default_handler(); }
 WEAK void PendSV_Handler     ()  { default_handler(); }
 WEAK void SysTick_Handler    ()  { default_handler(); }
 
+#endif // NDEBUG
+
 //------------------------------------------------------------------------------
 //
 //   Default interrupt handlers
 //
+#ifdef NDEBUG
+
+#pragma weak WWDG_IRQHandler               = default_handler
+#pragma weak PVD_IRQHandler                = default_handler
+#pragma weak TAMP_STAMP_IRQHandler         = default_handler
+#pragma weak RTC_WKUP_IRQHandler           = default_handler
+#pragma weak FLASH_IRQHandler              = default_handler
+#pragma weak RCC_IRQHandler                = default_handler
+#pragma weak EXTI0_IRQHandler              = default_handler
+#pragma weak EXTI1_IRQHandler              = default_handler
+#pragma weak EXTI2_IRQHandler              = default_handler
+#pragma weak EXTI3_IRQHandler              = default_handler
+#pragma weak EXTI4_IRQHandler              = default_handler
+#pragma weak DMA1_Stream0_IRQHandler       = default_handler
+#pragma weak DMA1_Stream1_IRQHandler       = default_handler
+#pragma weak DMA1_Stream2_IRQHandler       = default_handler
+#pragma weak DMA1_Stream3_IRQHandler       = default_handler
+#pragma weak DMA1_Stream4_IRQHandler       = default_handler
+#pragma weak DMA1_Stream5_IRQHandler       = default_handler
+#pragma weak DMA1_Stream6_IRQHandler       = default_handler
+#pragma weak ADC_IRQHandler                = default_handler
+#pragma weak CAN1_TX_IRQHandler            = default_handler
+#pragma weak CAN1_RX0_IRQHandler           = default_handler
+#pragma weak CAN1_RX1_IRQHandler           = default_handler
+#pragma weak CAN1_SCE_IRQHandler           = default_handler
+#pragma weak EXTI9_5_IRQHandler            = default_handler
+#pragma weak TIM1_BRK_TIM9_IRQHandler      = default_handler
+#pragma weak TIM1_UP_TIM10_IRQHandler      = default_handler
+#pragma weak TIM1_TRG_COM_TIM11_IRQHandler = default_handler
+#pragma weak TIM1_CC_IRQHandler            = default_handler
+#pragma weak TIM2_IRQHandler               = default_handler
+#pragma weak TIM3_IRQHandler               = default_handler
+#pragma weak TIM4_IRQHandler               = default_handler
+#pragma weak I2C1_EV_IRQHandler            = default_handler
+#pragma weak I2C1_ER_IRQHandler            = default_handler
+#pragma weak I2C2_EV_IRQHandler            = default_handler
+#pragma weak I2C2_ER_IRQHandler            = default_handler
+#pragma weak SPI1_IRQHandler               = default_handler
+#pragma weak SPI2_IRQHandler               = default_handler
+#pragma weak USART1_IRQHandler             = default_handler
+#pragma weak USART2_IRQHandler             = default_handler
+#pragma weak USART3_IRQHandler             = default_handler
+#pragma weak EXTI15_10_IRQHandler          = default_handler
+#pragma weak RTC_Alarm_IRQHandler          = default_handler
+#pragma weak OTG_FS_WKUP_IRQHandler        = default_handler
+#pragma weak TIM8_BRK_TIM12_IRQHandler     = default_handler
+#pragma weak TIM8_UP_TIM13_IRQHandler      = default_handler
+#pragma weak TIM8_TRG_COM_TIM14_IRQHandler = default_handler
+#pragma weak TIM8_CC_IRQHandler            = default_handler
+#pragma weak DMA1_Stream7_IRQHandler       = default_handler
+#pragma weak FMC_IRQHandler                = default_handler
+#pragma weak SDIO_IRQHandler               = default_handler
+#pragma weak TIM5_IRQHandler               = default_handler
+#pragma weak SPI3_IRQHandler               = default_handler
+#pragma weak UART4_IRQHandler              = default_handler
+#pragma weak UART5_IRQHandler              = default_handler
+#pragma weak TIM6_DAC_IRQHandler           = default_handler
+#pragma weak TIM7_IRQHandler               = default_handler
+#pragma weak DMA2_Stream0_IRQHandler       = default_handler
+#pragma weak DMA2_Stream1_IRQHandler       = default_handler
+#pragma weak DMA2_Stream2_IRQHandler       = default_handler
+#pragma weak DMA2_Stream3_IRQHandler       = default_handler
+#pragma weak DMA2_Stream4_IRQHandler       = default_handler
+#pragma weak ETH_IRQHandler                = default_handler
+#pragma weak ETH_WKUP_IRQHandler           = default_handler
+#pragma weak CAN2_TX_IRQHandler            = default_handler
+#pragma weak CAN2_RX0_IRQHandler           = default_handler
+#pragma weak CAN2_RX1_IRQHandler           = default_handler
+#pragma weak CAN2_SCE_IRQHandler           = default_handler
+#pragma weak OTG_FS_IRQHandler             = default_handler
+#pragma weak DMA2_Stream5_IRQHandler       = default_handler
+#pragma weak DMA2_Stream6_IRQHandler       = default_handler
+#pragma weak DMA2_Stream7_IRQHandler       = default_handler
+#pragma weak USART6_IRQHandler             = default_handler
+#pragma weak I2C3_EV_IRQHandler            = default_handler
+#pragma weak I2C3_ER_IRQHandler            = default_handler
+#pragma weak OTG_HS_EP1_OUT_IRQHandler     = default_handler
+#pragma weak OTG_HS_EP1_IN_IRQHandler      = default_handler
+#pragma weak OTG_HS_WKUP_IRQHandler        = default_handler
+#pragma weak OTG_HS_IRQHandler             = default_handler
+#pragma weak DCMI_IRQHandler               = default_handler
+#pragma weak CRYP_IRQHandler               = default_handler
+#pragma weak HASH_RNG_IRQHandler           = default_handler
+#pragma weak FPU_IRQHandler                = default_handler
+#pragma weak UART7_IRQHandler              = default_handler
+#pragma weak UART8_IRQHandler              = default_handler
+#pragma weak SPI4_IRQHandler               = default_handler
+#pragma weak SPI5_IRQHandler               = default_handler
+#pragma weak SPI6_IRQHandler               = default_handler
+#pragma weak SAI1_IRQHandler               = default_handler
+#pragma weak LTDC_IRQHandler               = default_handler
+#pragma weak LTDC_ER_IRQHandler            = default_handler
+#pragma weak DMA2D_IRQHandler              = default_handler
+#pragma weak QUADSPI_IRQHandler            = default_handler
+#pragma weak DSI_IRQHandler                = default_handler
+
+#else // NDEBUG
+
 WEAK void WWDG_IRQHandler               ()  { default_handler(); }
 WEAK void PVD_IRQHandler                ()  { default_handler(); }
 WEAK void TAMP_STAMP_IRQHandler         ()  { default_handler(); }
@@ -273,4 +387,6 @@ WEAK void LTDC_ER_IRQHandler            ()  { default_handler(); }
 WEAK void DMA2D_IRQHandler              ()  { default_handler(); }
 WEAK void QUADSPI_IRQHandler            ()  { default_handler(); }
 WEAK void DSI_IRQHandler                ()  { default_handler(); }
+
+#endif // NDEBUG
 //------------------------------------------------------------------------------
