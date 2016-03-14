@@ -85,6 +85,7 @@ const intvec_item_t __vector_table[] =
     AES_IRQHandler           // 22: AES Interrupt
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

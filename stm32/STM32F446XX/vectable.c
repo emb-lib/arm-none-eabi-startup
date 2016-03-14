@@ -159,6 +159,7 @@ const intvec_item_t __vector_table[] =
     FMPI2C1_Error_IRQHandler          // I2C 4 Error
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

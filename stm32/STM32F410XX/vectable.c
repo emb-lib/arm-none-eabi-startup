@@ -160,6 +160,7 @@ const intvec_item_t __vector_table[] =
     LPTIM1_IRQHandler                 // LP TIM1
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

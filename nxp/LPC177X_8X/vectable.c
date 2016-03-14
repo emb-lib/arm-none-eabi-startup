@@ -103,6 +103,7 @@ const intvec_item_t __vector_table[] =
     EEPROM_IRQHandler          // 56 EEPROM				
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

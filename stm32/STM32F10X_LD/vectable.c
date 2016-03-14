@@ -105,6 +105,7 @@ const intvec_item_t __vector_table[] =
     USBWakeUp_IRQHandler           // USB Wakeup from suspend
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

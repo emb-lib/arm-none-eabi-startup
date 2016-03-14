@@ -155,6 +155,7 @@ const intvec_item_t __vector_table[] =
     DSI_IRQHandler                    // DSI
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

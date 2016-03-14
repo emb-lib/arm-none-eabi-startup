@@ -96,6 +96,7 @@ const intvec_item_t __vector_table[] =
     FPUEH_IRQHandler         // 33: FPUEH Interrupt
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

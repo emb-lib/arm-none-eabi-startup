@@ -102,6 +102,7 @@ const intvec_item_t __vector_table[] =
     0                        // 39: Reserved
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

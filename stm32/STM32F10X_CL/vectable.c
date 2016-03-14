@@ -130,6 +130,7 @@ const intvec_item_t __vector_table[] =
     OTG_FS_IRQHandler            // USB OTG FS
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

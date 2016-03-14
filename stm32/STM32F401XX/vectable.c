@@ -147,6 +147,7 @@ const intvec_item_t __vector_table[] =
     SPI4_IRQHandler                   // SPI4
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

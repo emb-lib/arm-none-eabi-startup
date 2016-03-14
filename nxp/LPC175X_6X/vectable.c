@@ -97,6 +97,7 @@ const intvec_item_t __vector_table[] =
     CANActivity_IRQHandler     // 50 CAN Activity interrupt to wakeup
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

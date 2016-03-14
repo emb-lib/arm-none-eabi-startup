@@ -153,6 +153,7 @@ const intvec_item_t __vector_table[] =
     DMA2D_IRQHandler                  // DMA2D
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

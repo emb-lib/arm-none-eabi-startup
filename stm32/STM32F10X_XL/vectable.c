@@ -122,6 +122,7 @@ const intvec_item_t __vector_table[] =
     DMA2_Channel4_5_IRQHandler        // DMA2 Channel4 & Channel5
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

@@ -143,6 +143,7 @@ const intvec_item_t __vector_table[] =
     HASH_RNG_IRQHandler               // Hash and Rng 
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

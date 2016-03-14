@@ -83,6 +83,7 @@ const intvec_item_t __vector_table[] =
     TIMER2_IRQHandler        // 20: TIMER2 Interrupt
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {

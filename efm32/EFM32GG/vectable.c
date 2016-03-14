@@ -101,6 +101,7 @@ const intvec_item_t __vector_table[] =
     EMU_IRQHandler           // 38: EMU Interrupt
 };
 //------------------------------------------------------------------------------
+__attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
 static void hf_handler()
 {
