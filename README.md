@@ -47,7 +47,7 @@ __bss_end      - end of zero-filled data section
 
 Startup code is unified and very simple. It consists of `Reset_Handler` and two `weak` initialization functions. 
 
-#### Reset handler
+### Reset handler
 ```C++
 //------------------------------------------------------------------------------
 void Reset_Handler()
@@ -62,7 +62,7 @@ void Reset_Handler()
 }
 //------------------------------------------------------------------------------
 ```
-#### Initialization functions
+### Initialization functions
 ```C++
 //------------------------------------------------------------------------------
 __attribute__ ((weak))
@@ -82,6 +82,34 @@ The second initialization function `_init()` called from `__libc_init_array()`<s
 
 This flexible approach allows for the user to run custom initialization code to satisfy user's project demands.
 
+## Debug and Release options
+
+### Default handler stubs
+
+Vector table uses weak handler stubs that can be overrided in the user's project code. There are two sets of the stubs - for debug and release configurations. Debug configuration includes sepatate 'empty' function for each handler:
+
+```C++
+__attribute__ ((noreturn))
+static void default_handler() { for(;;) { } }
+
+```
+and special function for HardFault_Handler:
+
+```C++
+static void hf_handler()
+{
+    volatile int i = 0;         //  debug variable: set non-zero value to 
+    while(!i) { }               //  return from handler - this figures out 
+                                //  an address where HW fault raises
+}
+```
+Such code allows the user to change value of internal variable `i` to cause return from the handler and, therefore, jump to program address where Hard Fault had occured.
+
+In release configuration all vector table addresses point to the same default handler. This reduces code memory consumption.
+
+### Control
+
+By default, debug configuration is turned on. The user can switch release configuration by definition of `NDEBUG` macro with `-D` command line option.
 
 <hr>
 <a name="footnote1"></a>[1] Library function from GCC toolchain.
