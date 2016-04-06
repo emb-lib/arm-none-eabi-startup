@@ -32,7 +32,7 @@
 //------------------------------------------------------------------------------
 __attribute__ ((used))
 __attribute__ ((section(".isr_vector")))
-const __vector_table_t __vector_table=
+const __vector_table_t __vector_table =
 {
     __top_of_stack,
     
