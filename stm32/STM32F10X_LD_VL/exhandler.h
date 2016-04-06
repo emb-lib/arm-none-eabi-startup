@@ -2,7 +2,7 @@
 //*
 //*      STM32F10X_LD_VL exception/intrrupt handlers stuff header file
 //*
-//*      Version 1.0
+//*      Version 1.1
 //*
 //*      Copyright (c) 2016, emb-lib Project Team
 //*
@@ -45,12 +45,12 @@ extern unsigned long __top_of_stack[];
 //   Vector table item. Can be pointer to function or plain address value
 //
 typedef void (*intfun_t)();
-typedef union
+typedef struct
 {
-    intfun_t intfun;
-    void *__ptr;
+    unsigned long *tos;
+    intfun_t      vectors[71];
 }
-intvec_item_t;
+__vector_table_t;
 
 //------------------------------------------------------------------------------
 //

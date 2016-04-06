@@ -2,7 +2,7 @@
 //*
 //*      STM32F10X_CL vector table
 //*
-//*      Version 1.0
+//*      Version 1.1
 //*
 //*      Copyright (c) 2016, emb-lib Project Team
 //*
@@ -31,15 +31,17 @@
 
 //------------------------------------------------------------------------------
 __attribute__ ((used))
-__attribute__ ((section(".isr_vector")))                 
-const intvec_item_t __vector_table[] =
+__attribute__ ((section(".isr_vector")))
+const __vector_table_t __vector_table=
 {
-    { .__ptr = __top_of_stack },
+    __top_of_stack,
+    
+    {
     Reset_Handler,
 
     //--------------------------------------------------------------------------
     //
-    // Cortex-M3 core exceptions 
+    // Cortex-M core exceptions 
     // 
     NMI_Handler,
     HardFault_Handler,
@@ -128,6 +130,7 @@ const intvec_item_t __vector_table[] =
     CAN2_RX1_IRQHandler,         // CAN2 RX1
     CAN2_SCE_IRQHandler,         // CAN2 SCE
     OTG_FS_IRQHandler            // USB OTG FS
+    }
 };
 //------------------------------------------------------------------------------
 __attribute__ ((noreturn))

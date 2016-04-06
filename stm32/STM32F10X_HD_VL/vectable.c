@@ -2,7 +2,7 @@
 //*
 //*      STM32F10X_HD_VL vector table
 //*
-//*      Version 1.0
+//*      Version 1.1
 //*
 //*      Copyright (c) 2016, emb-lib Project Team
 //*
@@ -31,15 +31,17 @@
 
 //------------------------------------------------------------------------------
 __attribute__ ((used))
-__attribute__ ((section(".isr_vector")))                 
-const intvec_item_t __vector_table[] =
+__attribute__ ((section(".isr_vector")))
+const __vector_table_t __vector_table=
 {
-    { .__ptr = __top_of_stack },
+    __top_of_stack,
+    
+    {
     Reset_Handler,
 
     //--------------------------------------------------------------------------
     //
-    // Cortex-M3 core exceptions 
+    // Cortex-M core exceptions 
     // 
     NMI_Handler,
     HardFault_Handler,
@@ -121,6 +123,7 @@ const intvec_item_t __vector_table[] =
     DMA2_Channel3_IRQHandler,         // DMA2 Channel3
     DMA2_Channel4_5_IRQHandler,       // DMA2 Channel4 & Channel5
     DMA2_Channel5_IRQHandler          // DMA2 Channel5                
+    }
 };
 //------------------------------------------------------------------------------
 __attribute__ ((noreturn))

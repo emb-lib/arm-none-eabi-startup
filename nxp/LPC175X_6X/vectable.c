@@ -2,7 +2,7 @@
 //*
 //*      LPC175X_6X vector table
 //*
-//*      Version 1.0
+//*      Version 1.1
 //*
 //*      Copyright (c) 2016, emb-lib Project Team
 //*
@@ -31,15 +31,17 @@
 
 //------------------------------------------------------------------------------
 __attribute__ ((used))
-__attribute__ ((section(".isr_vector")))                 
-const intvec_item_t __vector_table[] =
+__attribute__ ((section(".isr_vector")))
+const __vector_table_t __vector_table=
 {
-    { .__ptr = __top_of_stack },
+    __top_of_stack,
+    
+    {
     Reset_Handler,
 
     //--------------------------------------------------------------------------
     //
-    // Cortex-M3 core exceptions 
+    // Cortex-M core exceptions 
     // 
     NMI_Handler,
     HardFault_Handler,
@@ -95,6 +97,7 @@ const intvec_item_t __vector_table[] =
     PLL1_IRQHandler,           // 48 PLL1 Lock (USB PLL)
     USBActivity_IRQHandler,    // 49 USB Activity interrupt to wakeup
     CANActivity_IRQHandler     // 50 CAN Activity interrupt to wakeup
+    }
 };
 //------------------------------------------------------------------------------
 __attribute__ ((noreturn))

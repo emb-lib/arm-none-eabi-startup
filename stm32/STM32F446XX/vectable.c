@@ -2,7 +2,7 @@
 //*
 //*      STM32F446XX vector table
 //*
-//*      Version 1.0
+//*      Version 1.1
 //*
 //*      Copyright (c) 2016, emb-lib Project Team
 //*
@@ -31,15 +31,17 @@
 
 //------------------------------------------------------------------------------
 __attribute__ ((used))
-__attribute__ ((section(".isr_vector")))                 
-const intvec_item_t __vector_table[] =
+__attribute__ ((section(".isr_vector")))
+const __vector_table_t __vector_table=
 {
-    { .__ptr = __top_of_stack },
+    __top_of_stack,
+    
+    {
     Reset_Handler,
 
     //--------------------------------------------------------------------------
     //
-    // Cortex-M3 core exceptions 
+    // Cortex-M core exceptions 
     // 
     NMI_Handler,
     HardFault_Handler,
@@ -157,6 +159,7 @@ const intvec_item_t __vector_table[] =
     SPDIF_RX_IRQHandler,              // SPDIF RX
     FMPI2C1_Event_IRQHandler,         // I2C 4 Event
     FMPI2C1_Error_IRQHandler          // I2C 4 Error
+    }
 };
 //------------------------------------------------------------------------------
 __attribute__ ((noreturn))

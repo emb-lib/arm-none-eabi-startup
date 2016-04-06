@@ -2,7 +2,7 @@
 //*
 //*      EFM32G vector table
 //*
-//*      Version 1.0
+//*      Version 1.1
 //*
 //*      Copyright (c) 2016, emb-lib Project Team
 //*
@@ -31,15 +31,17 @@
 
 //------------------------------------------------------------------------------
 __attribute__ ((used))
-__attribute__ ((section(".isr_vector")))                 
-const intvec_item_t __vector_table[] =
+__attribute__ ((section(".isr_vector")))
+const __vector_table_t __vector_table=
 {
-    { .__ptr = __top_of_stack },
+    __top_of_stack,
+    
+    {
     Reset_Handler,
 
     //--------------------------------------------------------------------------
     //
-    // Cortex-M3 core exceptions 
+    // Cortex-M core exceptions 
     // 
     NMI_Handler,
     HardFault_Handler,
@@ -91,6 +93,7 @@ const intvec_item_t __vector_table[] =
     MSC_IRQHandler,          // 28: MSC Interrupt
     AES_IRQHandler,          // 29: AES Interrupt
     0                        // 30: Reserved
+    }
 };
 //------------------------------------------------------------------------------
 __attribute__ ((noreturn))
