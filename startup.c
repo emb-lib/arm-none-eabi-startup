@@ -50,7 +50,7 @@ void Reset_Handler()
     if( __low_level_init() )
     {
         memcpy(__data_start, __idata_start, __data_end - __data_start); // copy initialized variables
-        memset(__bss_start, 0, __bss_end - __bss_start);               // zero-fill uninitialized variables
+        memset(__bss_start, 0, __bss_end - __bss_start);                // zero-fill uninitialized variables
         __libc_init_array();                                            // low-level init & ctor loop
     }
     main();
