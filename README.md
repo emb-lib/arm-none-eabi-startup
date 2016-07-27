@@ -36,12 +36,12 @@ Startup code, vector tables and default exception/interrupt handlers for various
 Library requires the following symbols to be defined in the user's linker script:
 
 ```
-__top_of_stack - end of RAM area where stack located
-__idata_start  - start of initializers section
-__data_start   - start of initialized data section
-__data_end     - end of initialized data section
-__bss_start    - start of zero-filled data section
-__bss_end      - end of zero-filled data section
+__top_of_stack : end of RAM area where stack located
+__idata_start  : start of initializers section
+__data_start   : start of initialized data section
+__data_end     : end of initialized data section
+__bss_start    : start of zero-filled data section
+__bss_end      : end of zero-filled data section
 ```
 
 ## Startup
@@ -56,7 +56,7 @@ void Reset_Handler()
     if( __low_level_init() )
     {
         memcpy(__data_start, __idata_start, __data_end - __data_start); // copy initialized variables
-        memset(__bss_start, 0, __bss_end - __bss_start);               // zero-fill uninitialized variables
+        memset(__bss_start, 0, __bss_end - __bss_start);                // zero-fill uninitialized variables
         __libc_init_array();                                            // low-level init & ctor loop
     }
     main();
@@ -101,10 +101,10 @@ static void hf_handler()
 {
     volatile int i = 0;         //  debug variable: set non-zero value to 
     while(!i) { }               //  return from handler - this figures out 
-                                //  an address where HW fault raises
+                                //  an address where HW fault raised
 }
 ```
-Such code allows the user to change value of internal variable `i` to cause return from the handler and, therefore, jump to program address where Hard Fault had occured.
+Such code allows the user to change value of internal variable `i` to cause return from the handler and, therefore, jump to program address where Hard Fault occured.
 
 In release configuration all vector table addresses point to the same default handler. This reduces code memory consumption.
 
