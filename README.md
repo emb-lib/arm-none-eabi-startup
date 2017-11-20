@@ -9,6 +9,7 @@ Startup code, vector tables and default exception/interrupt handlers for various
 * STM32F10x 
 * STM32F2xx
 * STM32F4xx
+* STM32F7xx
 * STM32L0xx
 * STM32L1xx
 * STM32F0xx
