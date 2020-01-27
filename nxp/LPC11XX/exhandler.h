@@ -1,10 +1,10 @@
 //******************************************************************************
 //*
-//*      LPC40XX exception/intrrupt handlers stuff header file
+//*      LPC11XX exception/intrrupt handlers stuff header file
 //*
-//*      Version 1.1
+//*      Version 1.2
 //*
-//*      Copyright (c) 2016, emb-lib Project Team
+//*      Copyright (c) 2016-2020, emb-lib Project Team
 //*
 //*      This file is part of the arm-none-eabi-startup project.
 //*      Visit https://github.com/emb-lib/arm-none-eabi-startup for new versions.
@@ -51,7 +51,7 @@ typedef void (*intfun_t)();
 typedef struct
 {
     unsigned long *tos;
-    intfun_t      vectors[56];
+    intfun_t      vectors[47];
 }
 __vector_table_t;
 
@@ -79,47 +79,38 @@ WEAK void SysTick_Handler();
 //
 //   Controller specific peripheral interrupts
 //
-WEAK void WDT_IRQHandler();
-WEAK void TIMER0_IRQHandler();
-WEAK void TIMER1_IRQHandler();
-WEAK void TIMER2_IRQHandler();
-WEAK void TIMER3_IRQHandler();
-WEAK void UART0_IRQHandler();
-WEAK void UART1_IRQHandler();
-WEAK void UART2_IRQHandler();
-WEAK void UART3_IRQHandler();
-WEAK void PWM1_IRQHandler();
-WEAK void I2C0_IRQHandler();
-WEAK void I2C1_IRQHandler();
-WEAK void I2C2_IRQHandler();
-WEAK void UnHandled_Vector();
-WEAK void SSP0_IRQHandler();
+WEAK void SLWU_INT0_IRQHandler();
+WEAK void SLWU_INT1_IRQHandler();
+WEAK void SLWU_INT2_IRQHandler();
+WEAK void SLWU_INT3_IRQHandler();
+WEAK void SLWU_INT4_IRQHandler();
+WEAK void SLWU_INT5_IRQHandler();
+WEAK void SLWU_INT6_IRQHandler();
+WEAK void SLWU_INT7_IRQHandler();
+WEAK void SLWU_INT8_IRQHandler();
+WEAK void SLWU_INT9_IRQHandler();
+WEAK void SLWU_INT10_IRQHandler();
+WEAK void SLWU_INT11_IRQHandler();
+WEAK void SLWU_INT12_IRQHandler();
+WEAK void C_CAN_IRQHandler();
 WEAK void SSP1_IRQHandler();
-WEAK void PLL0_IRQHandler();
-WEAK void RTC_IRQHandler();
-WEAK void EINT0_IRQHandler();
-WEAK void EINT1_IRQHandler();
-WEAK void EINT2_IRQHandler();
-WEAK void EINT3_IRQHandler();
+WEAK void I2C_IRQHandler();
+WEAK void TIMER16_0_IRQHandler();
+WEAK void TIMER16_1_IRQHandler();
+WEAK void TIMER32_0_IRQHandler();
+WEAK void TIMER32_1_IRQHandler();
+WEAK void SSP0_IRQHandler();
+WEAK void UART_IRQHandler();
+WEAK void Reserved_IRQHandler();
+WEAK void Reserved_IRQHandler();
 WEAK void ADC_IRQHandler();
+WEAK void WDT_IRQHandler();
 WEAK void BOD_IRQHandler();
-WEAK void USB_IRQHandler();
-WEAK void CAN_IRQHandler();
-WEAK void DMA_IRQHandler();
-WEAK void I2S_IRQHandler();
-WEAK void ETH_IRQHandler();
-WEAK void SDIO_IRQHandler();
-WEAK void MCPWM_IRQHandler();
-WEAK void QEI_IRQHandler();
-WEAK void PLL1_IRQHandler();
-WEAK void USBActivity_IRQHandler();
-WEAK void CANActivity_IRQHandler();
-WEAK void UART4_IRQHandler();
-WEAK void SSP2_IRQHandler();
-WEAK void LCD_IRQHandler();
-WEAK void GPIO_IRQHandler();
-WEAK void PWM0_IRQHandler();
-WEAK void EEPROM_IRQHandler();
+WEAK void Reserved_IRQHandler();
+WEAK void PIO_3_IRQHandler();
+WEAK void PIO_2_IRQHandler();
+WEAK void PIO_1_IRQHandler();
+WEAK void PIO_0_IRQHandler();
 //------------------------------------------------------------------------------
 
 #endif // EXHANDLER_H

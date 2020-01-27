@@ -1,10 +1,10 @@
 //******************************************************************************
 //*
-//*      LPC40XX vector table
+//*      LPC407X_8X_177X_8X vector table
 //*
-//*      Version 1.1
+//*      Version 1.2
 //*
-//*      Copyright (c) 2016, emb-lib Project Team
+//*      Copyright (c) 2016-2020, emb-lib Project Team
 //*
 //*      This file is part of the arm-none-eabi-startup project.
 //*      Visit https://github.com/emb-lib/arm-none-eabi-startup for new versions.
@@ -65,58 +65,60 @@ const __vector_table_t __vector_table =
     //
     // Peripheral interrupts
     // 
-    WDT_IRQHandler,            // 16 Watchdog Timer
-    TIMER0_IRQHandler,         // 17 Timer0
-    TIMER1_IRQHandler,         // 18 Timer1
-    TIMER2_IRQHandler,         // 19 Timer2
-    TIMER3_IRQHandler,         // 20 Timer3
-    UART0_IRQHandler,          // 21 UART0
-    UART1_IRQHandler,          // 22 UART1
-    UART2_IRQHandler,          // 23 UART2
-    UART3_IRQHandler,          // 24 UART3
-    PWM1_IRQHandler,           // 25 PWM1
-    I2C0_IRQHandler,           // 26 I2C0
-    I2C1_IRQHandler,           // 27 I2C1
-    I2C2_IRQHandler,           // 28 I2C2
-    UnHandled_Vector,          // 29 Reserved
-    SSP0_IRQHandler,           // 30 SSP0
-    SSP1_IRQHandler,           // 31 SSP1
-    PLL0_IRQHandler,           // 32 PLL0 Lock (Main PLL)
-    RTC_IRQHandler,            // 33 RTC
-    EINT0_IRQHandler,          // 34 External Interrupt 0
-    EINT1_IRQHandler,          // 35 External Interrupt 1
-    EINT2_IRQHandler,          // 36 External Interrupt 2
-    EINT3_IRQHandler,          // 37 External Interrupt 3
-    ADC_IRQHandler,            // 38 A/D Converter
-    BOD_IRQHandler,            // 39 Brown-Out Detect
-    USB_IRQHandler,            // 40 USB
-    CAN_IRQHandler,            // 41 CAN
-    DMA_IRQHandler,            // 42 General Purpose DMA
-    I2S_IRQHandler,            // 43 I2S
-    ETH_IRQHandler,            // 44 Ethernet
-    SDIO_IRQHandler,           // 45 SD/MMC card I/F
-    MCPWM_IRQHandler,          // 46 Motor Control PWM
-    QEI_IRQHandler,            // 47 QEI
-    PLL1_IRQHandler,           // 48 PLL1 Lock (USB PLL)
-    USBActivity_IRQHandler,    // 49 USB Activity interrupt to wakeup
-    CANActivity_IRQHandler,    // 50 CAN Activity interrupt to wakeup
-    UART4_IRQHandler,          // 51 UART4
-    SSP2_IRQHandler,           // 52 SSP2
-    LCD_IRQHandler,            // 53 LCD
-    GPIO_IRQHandler,           // 54 GPIO
-    PWM0_IRQHandler,           // 55 PWM0
-    EEPROM_IRQHandler          // 56 EEPROM				
+    WDT_IRQHandler,            // 16: Watchdog Timer
+    TIMER0_IRQHandler,         // 17: Timer0
+    TIMER1_IRQHandler,         // 18: Timer1
+    TIMER2_IRQHandler,         // 19: Timer2
+    TIMER3_IRQHandler,         // 20: Timer3
+    UART0_IRQHandler,          // 21: UART0
+    UART1_IRQHandler,          // 22: UART1
+    UART2_IRQHandler,          // 23: UART2
+    UART3_IRQHandler,          // 24: UART3
+    PWM1_IRQHandler,           // 25: PWM1
+    I2C0_IRQHandler,           // 26: I2C0
+    I2C1_IRQHandler,           // 27: I2C1
+    I2C2_IRQHandler,           // 28: I2C2
+    0,                         // 29: reserved, not for SPIFI anymore
+    SSP0_IRQHandler,           // 30: SSP0
+    SSP1_IRQHandler,           // 31: SSP1
+    PLL0_IRQHandler,           // 32: PLL0 Lock (Main PLL)
+    RTC_IRQHandler,            // 33: Real Time Clock
+    EINT0_IRQHandler,          // 34: External Interrupt 0
+    EINT1_IRQHandler,          // 35: External Interrupt 1
+    EINT2_IRQHandler,          // 36: External Interrupt 2
+    EINT3_IRQHandler,          // 37: External Interrupt 3
+    ADC_IRQHandler,            // 38: A/D Converter
+    BOD_IRQHandler,            // 39: Brown-Out Detect
+    USB_IRQHandler,            // 40: USB
+    CAN_IRQHandler,            // 41: CAN
+    DMA_IRQHandler,            // 42: General Purpose DMA
+    I2S_IRQHandler,            // 43: I2S
+    ENET_IRQHandler,           // 44: Ethernet
+    MCI_IRQHandler,            // 45: SD/MMC card I/F
+    MCPWM_IRQHandler,          // 46: Motor Control PWM
+    QEI_IRQHandler,            // 47: Quadrature Encoder Interface
+    PLL1_IRQHandler,           // 48: PLL1 Lock (USB PLL)
+    USBActivity_IRQHandler,    // 49: USB Activity interrupt to wakeup
+    CANActivity_IRQHandler,    // 50: CAN Activity interrupt to wakeup
+    UART4_IRQHandler,          // 51: UART4
+    SSP2_IRQHandler,           // 52: SSP2
+    LCD_IRQHandler,            // 53: LCD
+    GPIO_IRQHandler,           // 54: GPIO
+    PWM0_IRQHandler,           // 55: PWM0
+    EEPROM_IRQHandler          // 56: EEPROM
     }
 };
 //------------------------------------------------------------------------------
 __attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
+#ifndef NDEBUG
 static void hf_handler()
 {
     volatile int i = 0;         //  debug variable: set non-zero value to 
     while(!i) { }               //  return from handler - this figures out 
                                 //  an address where HW fault raises
 }
+#endif // NDEBUG
 //------------------------------------------------------------------------------
 //
 //   Default exception handlers
@@ -166,7 +168,6 @@ WEAK void SysTick_Handler    ()  { default_handler(); }
 #pragma weak I2C0_IRQHandler        = default_handler
 #pragma weak I2C1_IRQHandler        = default_handler
 #pragma weak I2C2_IRQHandler        = default_handler
-#pragma weak UnHandled_Vector       = default_handler
 #pragma weak SSP0_IRQHandler        = default_handler
 #pragma weak SSP1_IRQHandler        = default_handler
 #pragma weak PLL0_IRQHandler        = default_handler
@@ -181,8 +182,8 @@ WEAK void SysTick_Handler    ()  { default_handler(); }
 #pragma weak CAN_IRQHandler         = default_handler
 #pragma weak DMA_IRQHandler         = default_handler
 #pragma weak I2S_IRQHandler         = default_handler
-#pragma weak ETH_IRQHandler         = default_handler
-#pragma weak SDIO_IRQHandler        = default_handler
+#pragma weak ENET_IRQHandler        = default_handler
+#pragma weak MCI_IRQHandler         = default_handler
 #pragma weak MCPWM_IRQHandler       = default_handler
 #pragma weak QEI_IRQHandler         = default_handler
 #pragma weak PLL1_IRQHandler        = default_handler
@@ -210,7 +211,6 @@ WEAK void PWM1_IRQHandler        ()  { default_handler(); }
 WEAK void I2C0_IRQHandler        ()  { default_handler(); }
 WEAK void I2C1_IRQHandler        ()  { default_handler(); }
 WEAK void I2C2_IRQHandler        ()  { default_handler(); }
-WEAK void UnHandled_Vector       ()  { default_handler(); }
 WEAK void SSP0_IRQHandler        ()  { default_handler(); }
 WEAK void SSP1_IRQHandler        ()  { default_handler(); }
 WEAK void PLL0_IRQHandler        ()  { default_handler(); }
@@ -225,8 +225,8 @@ WEAK void USB_IRQHandler         ()  { default_handler(); }
 WEAK void CAN_IRQHandler         ()  { default_handler(); }
 WEAK void DMA_IRQHandler         ()  { default_handler(); }
 WEAK void I2S_IRQHandler         ()  { default_handler(); }
-WEAK void ETH_IRQHandler         ()  { default_handler(); }
-WEAK void SDIO_IRQHandler        ()  { default_handler(); }
+WEAK void ENET_IRQHandler        ()  { default_handler(); }
+WEAK void MCI_IRQHandler         ()  { default_handler(); }
 WEAK void MCPWM_IRQHandler       ()  { default_handler(); }
 WEAK void QEI_IRQHandler         ()  { default_handler(); }
 WEAK void PLL1_IRQHandler        ()  { default_handler(); }
