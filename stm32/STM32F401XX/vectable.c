@@ -2,9 +2,9 @@
 //*
 //*      STM32F401XX vector table
 //*
-//*      Version 1.1
+//*      Version 1.2
 //*
-//*      Copyright (c) 2016, emb-lib Project Team
+//*      Copyright (c) 2016-2020, emb-lib Project Team
 //*
 //*      This file is part of the arm-none-eabi-startup project.
 //*      Visit https://github.com/emb-lib/arm-none-eabi-startup for new versions.
@@ -146,21 +146,20 @@ const __vector_table_t __vector_table =
     0,                                // Reserved                                            
     0,                                // Reserved                                     
     0,                                // Reserved 
-    FPU_IRQHandler,                   // FPU
-    0,                                // Reserved  
-    0,                                // Reserved  
-    SPI4_IRQHandler                   // SPI4
+    FPU_IRQHandler                    // FPU
     }
 };
 //------------------------------------------------------------------------------
 __attribute__ ((noreturn))
 static void default_handler() { for(;;) { } }
+#ifndef NDEBUG
 static void hf_handler()
 {
     volatile int i = 0;         //  debug variable: set non-zero value to 
     while(!i) { }               //  return from handler - this figures out 
                                 //  an address where HW fault raises
 }
+#endif // NDEBUG
 //------------------------------------------------------------------------------
 //
 //   Default exception handlers
@@ -252,7 +251,6 @@ WEAK void SysTick_Handler    ()  { default_handler(); }
 #pragma weak I2C3_EV_IRQHandler            = default_handler
 #pragma weak I2C3_ER_IRQHandler            = default_handler
 #pragma weak FPU_IRQHandler                = default_handler
-#pragma weak SPI4_IRQHandler               = default_handler
 
 #else // NDEBUG
 
@@ -311,7 +309,6 @@ WEAK void USART6_IRQHandler             ()  { default_handler(); }
 WEAK void I2C3_EV_IRQHandler            ()  { default_handler(); }
 WEAK void I2C3_ER_IRQHandler            ()  { default_handler(); }
 WEAK void FPU_IRQHandler                ()  { default_handler(); }
-WEAK void SPI4_IRQHandler               ()  { default_handler(); }
 
 #endif // NDEBUG
 //------------------------------------------------------------------------------

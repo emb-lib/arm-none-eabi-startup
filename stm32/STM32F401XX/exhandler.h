@@ -2,9 +2,9 @@
 //*
 //*      STM32F401XX exception/intrrupt handlers stuff header file
 //*
-//*      Version 1.1
+//*      Version 1.2
 //*
-//*      Copyright (c) 2016, emb-lib Project Team
+//*      Copyright (c) 2016-2020, emb-lib Project Team
 //*
 //*      This file is part of the arm-none-eabi-startup project.
 //*      Visit https://github.com/emb-lib/arm-none-eabi-startup for new versions.
@@ -51,7 +51,7 @@ typedef void (*intfun_t)();
 typedef struct
 {
     unsigned long *tos;
-    intfun_t      vectors[100];
+    intfun_t      vectors[97];
 }
 __vector_table_t;
 
@@ -134,7 +134,6 @@ WEAK void USART6_IRQHandler();
 WEAK void I2C3_EV_IRQHandler();
 WEAK void I2C3_ER_IRQHandler();
 WEAK void FPU_IRQHandler();
-WEAK void SPI4_IRQHandler();
 //------------------------------------------------------------------------------
 
 #endif // EXHANDLER_H
