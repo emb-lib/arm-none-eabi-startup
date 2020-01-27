@@ -2,9 +2,9 @@
 //*
 //*      EFM32JG1B exception/intrrupt handlers stuff header file
 //*
-//*      Version 1.1
+//*      Version 1.2
 //*
-//*      Copyright (c) 2016, emb-lib Project Team
+//*      Copyright (c) 2016-2020, emb-lib Project Team
 //*
 //*      This file is part of the arm-none-eabi-startup project.
 //*      Visit https://github.com/emb-lib/arm-none-eabi-startup for new versions.
