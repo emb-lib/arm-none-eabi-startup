@@ -12,7 +12,10 @@ Startup code, vector tables and default exception/interrupt handlers for various
 * STM32F7xx
 * STM32L0xx
 * STM32L1xx
+* STM32L4xx
 * STM32F0xx
+* STM32F0xx
+* STM32H7xx
 
 ### NXP
 
