@@ -1,6 +1,6 @@
 //******************************************************************************
 //*
-//*      STM32L082XX vector table
+//*      STM32L031XX vector table
 //*
 //*      Version 1.2
 //*
@@ -69,34 +69,34 @@ const __vector_table_t __vector_table =
     PVD_IRQHandler,                    // PVD through EXTI Line detect
     RTC_IRQHandler,                    // RTC through EXTI Line
     FLASH_IRQHandler,                  // FLASH
-    RCC_CRS_IRQHandler,                // RCC and CRS
+    RCC_IRQHandler,                    // RCC
     EXTI0_1_IRQHandler,                // EXTI Line 0 and 1
     EXTI2_3_IRQHandler,                // EXTI Line 2 and 3
     EXTI4_15_IRQHandler,               // EXTI Line 4 to 15
-    TSC_IRQHandler,                    // TSC
+    0,                                 // Reserved
     DMA1_Channel1_IRQHandler,          // DMA1 Channel 1
     DMA1_Channel2_3_IRQHandler,        // DMA1 Channel 2 and Channel 3
     DMA1_Channel4_5_6_7_IRQHandler,    // DMA1 Channel 4, Channel 5, Channel 6 and Channel 7
-    ADC1_COMP_IRQHandler,              // ADC1, COMP1 and COMP2 
+    ADC1_COMP_IRQHandler,              // ADC1, COMP1
     LPTIM1_IRQHandler,                 // LPTIM1
-    USART4_5_IRQHandler,               // USART4 and USART5
+    0,                                 // Reserved
     TIM2_IRQHandler,                   // TIM2
-    TIM3_IRQHandler,                   // TIM3
-    TIM6_DAC_IRQHandler,               // TIM6 and DAC
-    TIM7_IRQHandler,                   // TIM7
+    0,                                 // Reserved
+    0,                                 // Reserved
+    0,                                 // Reserved
     0,                                 // Reserved
     TIM21_IRQHandler,                  // TIM21
-    I2C3_IRQHandler,                   // I2C3
+    0,                                 // Reserved
     TIM22_IRQHandler,                  // TIM22
     I2C1_IRQHandler,                   // I2C1
-    I2C2_IRQHandler,                   // I2C2
-    SPI1_IRQHandler,                   // SPI1
-    SPI2_IRQHandler,                   // SPI2
-    USART1_IRQHandler,                 // USART1
-    USART2_IRQHandler,                 // USART2
-    AES_RNG_LPUART1_IRQHandler,        // RNG and LPUART1
     0,                                 // Reserved
-    USB_IRQHandler                     // USB
+    SPI1_IRQHandler,                   // SPI1
+    0,                                 // Reserved
+    0,                                 // Reserved
+    USART2_IRQHandler,                 // USART2
+    LPUART1_IRQHandler,                // LPUART1
+    0,                                 // Reserved
+    0                                  // Reserved
     }
 };
 //------------------------------------------------------------------------------
@@ -150,32 +150,22 @@ WEAK void SysTick_Handler    ()  { default_handler(); }
 #pragma weak PVD_IRQHandler                 = default_handler
 #pragma weak RTC_IRQHandler                 = default_handler
 #pragma weak FLASH_IRQHandler               = default_handler
-#pragma weak RCC_CRS_IRQHandler             = default_handler
+#pragma weak RCC_IRQHandler                 = default_handler
 #pragma weak EXTI0_1_IRQHandler             = default_handler
 #pragma weak EXTI2_3_IRQHandler             = default_handler
 #pragma weak EXTI4_15_IRQHandler            = default_handler
-#pragma weak TSC_IRQHandler                 = default_handler
 #pragma weak DMA1_Channel1_IRQHandler       = default_handler
 #pragma weak DMA1_Channel2_3_IRQHandler     = default_handler
 #pragma weak DMA1_Channel4_5_6_7_IRQHandler = default_handler
 #pragma weak ADC1_COMP_IRQHandler           = default_handler
 #pragma weak LPTIM1_IRQHandler              = default_handler
-#pragma weak USART4_5_IRQHandler            = default_handler
 #pragma weak TIM2_IRQHandler                = default_handler
-#pragma weak TIM3_IRQHandler                = default_handler
-#pragma weak TIM6_DAC_IRQHandler            = default_handler
-#pragma weak TIM7_IRQHandler                = default_handler
 #pragma weak TIM21_IRQHandler               = default_handler
-#pragma weak I2C3_IRQHandler                = default_handler
 #pragma weak TIM22_IRQHandler               = default_handler
 #pragma weak I2C1_IRQHandler                = default_handler
-#pragma weak I2C2_IRQHandler                = default_handler
 #pragma weak SPI1_IRQHandler                = default_handler
-#pragma weak SPI2_IRQHandler                = default_handler
-#pragma weak USART1_IRQHandler              = default_handler
 #pragma weak USART2_IRQHandler              = default_handler
-#pragma weak AES_RNG_LPUART1_IRQHandler     = default_handler
-#pragma weak USB_IRQHandler                 = default_handler
+#pragma weak LPUART1_IRQHandler             = default_handler
 
 #else // NDEBUG
 
@@ -183,32 +173,22 @@ WEAK void WWDG_IRQHandler                ()  { default_handler(); }
 WEAK void PVD_IRQHandler                 ()  { default_handler(); }
 WEAK void RTC_IRQHandler                 ()  { default_handler(); }
 WEAK void FLASH_IRQHandler               ()  { default_handler(); }
-WEAK void RCC_CRS_IRQHandler             ()  { default_handler(); }
+WEAK void RCC_IRQHandler                 ()  { default_handler(); }
 WEAK void EXTI0_1_IRQHandler             ()  { default_handler(); }
 WEAK void EXTI2_3_IRQHandler             ()  { default_handler(); }
 WEAK void EXTI4_15_IRQHandler            ()  { default_handler(); }
-WEAK void TSC_IRQHandler                 ()  { default_handler(); }
 WEAK void DMA1_Channel1_IRQHandler       ()  { default_handler(); }
 WEAK void DMA1_Channel2_3_IRQHandler     ()  { default_handler(); }
 WEAK void DMA1_Channel4_5_6_7_IRQHandler ()  { default_handler(); }
 WEAK void ADC1_COMP_IRQHandler           ()  { default_handler(); }
 WEAK void LPTIM1_IRQHandler              ()  { default_handler(); }
-WEAK void USART4_5_IRQHandler            ()  { default_handler(); }
 WEAK void TIM2_IRQHandler                ()  { default_handler(); }
-WEAK void TIM3_IRQHandler                ()  { default_handler(); }
-WEAK void TIM6_DAC_IRQHandler            ()  { default_handler(); }
-WEAK void TIM7_IRQHandler                ()  { default_handler(); }
 WEAK void TIM21_IRQHandler               ()  { default_handler(); }
-WEAK void I2C3_IRQHandler                ()  { default_handler(); }
 WEAK void TIM22_IRQHandler               ()  { default_handler(); }
 WEAK void I2C1_IRQHandler                ()  { default_handler(); }
-WEAK void I2C2_IRQHandler                ()  { default_handler(); }
 WEAK void SPI1_IRQHandler                ()  { default_handler(); }
-WEAK void SPI2_IRQHandler                ()  { default_handler(); }
-WEAK void USART1_IRQHandler              ()  { default_handler(); }
 WEAK void USART2_IRQHandler              ()  { default_handler(); }
-WEAK void AES_RNG_LPUART1_IRQHandler     ()  { default_handler(); }
-WEAK void USB_IRQHandler                 ()  { default_handler(); }
+WEAK void LPUART1_IRQHandler             ()  { default_handler(); }
 
 #endif // NDEBUG
 //------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 //******************************************************************************
 //*
-//*      STM32L071XX exception/intrrupt handlers stuff header file
+//*      STM32L041XX exception/intrrupt handlers stuff header file
 //*
 //*      Version 1.2
 //*
@@ -92,21 +92,13 @@ WEAK void DMA1_Channel2_3_IRQHandler();
 WEAK void DMA1_Channel4_5_6_7_IRQHandler();
 WEAK void ADC1_COMP_IRQHandler();
 WEAK void LPTIM1_IRQHandler();
-WEAK void USART4_5_IRQHandler();
 WEAK void TIM2_IRQHandler();
-WEAK void TIM3_IRQHandler();
-WEAK void TIM6_IRQHandler();
-WEAK void TIM7_IRQHandler();
 WEAK void TIM21_IRQHandler();
-WEAK void I2C3_IRQHandler();
 WEAK void TIM22_IRQHandler();
 WEAK void I2C1_IRQHandler();
-WEAK void I2C2_IRQHandler();
 WEAK void SPI1_IRQHandler();
-WEAK void SPI2_IRQHandler();
-WEAK void USART1_IRQHandler();
 WEAK void USART2_IRQHandler();
-WEAK void LPUART1_IRQHandler();
+WEAK void AES_LPUART1_IRQHandler();
 //------------------------------------------------------------------------------
 
 #endif // EXHANDLER_H
